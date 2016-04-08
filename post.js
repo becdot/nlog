@@ -1,6 +1,10 @@
 var React = require("react");
 
+var PostMixin = require('./post_mixin');
+
 var Post = React.createClass({
+  mixins: [PostMixin],
+
   getDefaultProps() {
     return {
       author: "",
@@ -12,24 +16,8 @@ var Post = React.createClass({
     };
   },
 
-  getHeader() {
-    return (
-      <header>
-        <h2>{this.props.title}</h2>
-        <p>
-          <time>{this.props.datePublished}</time>{" by "}<span>{this.props.author}</span>
-        </p>
-      </header>
-    );
-  },
+  getComments() {
 
-  getBody() {
-    var title = this.props.title.toLowerCase().split(' ').join('-');
-    return (
-      <div>
-        {this.props.content.split("\n").map((para, i) => <p key={`post-${title}-paragraph-${i}`}>{para}</p>)}
-      </div>
-    );
   },
 
   render() {
@@ -37,6 +25,7 @@ var Post = React.createClass({
       <article className="post">
         {this.getHeader()}
         {this.getBody()}
+        {this.getComments()}
       </article>
     );
   }
