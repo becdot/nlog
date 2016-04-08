@@ -92,6 +92,7 @@
     clearInterval: false,
     document: false,
     alert: false,
+    process: false
   },
   plugins: ["react"]
 }

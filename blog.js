@@ -17,13 +17,11 @@ var Blog = React.createClass({
     );
   },
 
-  buildPost(post) {
-    var postTitle = `post-${post.title.toLowerCase().split(' ').join('-')}`;
-    return <Post key={postTitle} author={post.author} content={post.content} title={post.title} tags={post.tags} comments={post.comments} datePublished={post.datePublished} />;
-  },
-
   getPosts() {
-    return this.props.posts.map((post) => this.buildPost(post));
+    return this.props.posts.map((post) => {
+      var postTitle = `post-${post.title.toLowerCase().split(' ').join('-')}`;
+      return <Post key={postTitle} author={post.author} content={post.content} title={post.title} tags={post.tags} comments={post.comments} datePublished={post.datePublished} />;
+    });
   },
 
   render() {
