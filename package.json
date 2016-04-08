@@ -4,7 +4,9 @@
   "description": "A simple node-based blog platform",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Compiling JavaScript...\" && npm-run babel --presets react *.js --watch --out-dir build",
+    "spin": "echo \"Spinning up server...\" && npm-run forever -w server.js"
   },
   "repository": {
     "type": "git",
