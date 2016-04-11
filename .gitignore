@@ -3,3 +3,4 @@ build/*
 npm-debug.log
 .foreverignore
 .DS_STORE
+npm-run/*

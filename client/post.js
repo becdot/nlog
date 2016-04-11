@@ -8,6 +8,7 @@ var Post = React.createClass({
 
   getDefaultProps() {
     return {
+      id: 0,
       author: "",
       content: "",
       title: "",
@@ -17,11 +18,17 @@ var Post = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      selected: false
+    };
+  },
+
   getHeader() {
     return (
       <header>
-        <h2>{this.props.title}</h2>
-        <p>
+        <h2 onClick={this.props.filter.bind(null, {key: "id", value: this.props.id})}>{this.props.title}</h2>
+        <p className="timestamp">
           <time>{this.formatDate()}</time>{" by "}<span>{this.props.author}</span>
           <span> -- </span>
           <span>{`${this.props.comments.length} comments`}</span>
@@ -51,7 +58,7 @@ var Post = React.createClass({
       <article className="post">
         {this.getHeader()}
         {this.getBody()}
-        <h3>Comments</h3>
+        {this.props.comments.length ? <h3>Comments</h3> : null}
         {this.getComments()}
       </article>
     );
