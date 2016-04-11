@@ -29,7 +29,9 @@ var Post = React.createClass({
       <header>
         <h2 onClick={this.props.filter.bind(null, {key: "id", value: this.props.id})}>{this.props.title}</h2>
         <p className="timestamp">
-          <time>{this.formatDate()}</time>{" by "}<span>{this.props.author}</span>
+          <time>{this.formatDate()}</time>
+          {" by "}
+          <span onClick={this.props.filter.bind(null, {key: "author", value: this.props.author})}>{this.props.author}</span>
           <span> -- </span>
           <span>{`${this.props.comments.length} comments`}</span>
         </p>
@@ -53,6 +55,22 @@ var Post = React.createClass({
     });
   },
 
+  getTags() {
+    var postID = this.props.id;
+    var tags = this.props.tags.map((tag) => {
+      var title = `tag-${tag}-post-id-${postID}`;
+      return <li key={title} onClick={this.props.filter.bind(null, {key: "tags", value: tag})}>{tag}</li>;
+    });
+    return (
+      <div>
+      Tagged with
+        <ul tags>
+          {tags}
+        </ul>
+      </div>
+    );
+  },
+
   render() {
     return (
       <article className="post">
@@ -60,6 +78,7 @@ var Post = React.createClass({
         {this.getBody()}
         {this.props.comments.length ? <h3>Comments</h3> : null}
         {this.getComments()}
+        {this.getTags()}
       </article>
     );
   }

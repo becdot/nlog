@@ -19,9 +19,17 @@ var Blog = React.createClass({
   filterPosts() {
     console.log("filterPosts, filter =", this.state.filter);
     var posts = this.props.posts;
-    if (this.state.filter.key) {
-      console.log(`filtering posts by ${this.state.filter.key}`);
-      posts = this.props.posts.filter((post) => post[this.state.filter.key] === this.state.filter.value);
+    var key = this.state.filter.key;
+    var value = this.state.filter.value;
+    console.log(`filtering posts by ${key}`);
+    switch(key) {
+      case "id":
+      case "author":
+        posts = posts.filter((post) => post[key] === value);
+        break;
+      case "tags":
+        posts = posts.filter((post) => post[key].indexOf(value) !== -1);
+        break;
     }
     return posts;
   },
