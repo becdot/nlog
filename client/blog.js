@@ -37,7 +37,7 @@ var Blog = React.createClass({
   getHeader() {
     return (
       <header>
-        <h1>Nlog</h1>
+        <h1 onClick={this.setFilter.bind(null, {})}>Nlog</h1>
       </header>
     );
   },
